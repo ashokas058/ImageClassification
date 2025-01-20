@@ -6,11 +6,20 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import img_to_array
 import base64
 import os
+import tensorflow as tf
 
 
 app = Flask(__name__)
 CORS(app)
 
+
+gpus = tf.config.list_physical_devices('GPU')
+if gpus:
+    try:
+        for gpu in gpus:
+            tf.config.experimental.set_memory_growth(gpu, True)
+    except RuntimeError as e:
+        print(e)
 
 MODEL_PATH = 'models/imageclassifier.h5'
 model = load_model(MODEL_PATH)

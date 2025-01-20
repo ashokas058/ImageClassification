@@ -32,6 +32,7 @@ setInterval(() => {
         .then((response) => response.json())
         .then((data) => {
             if (data.label !== undefined) {
+
                 labelElement.textContent = `Prediction: ${data.label}`;
             } else if (data.error) {
                 console.error('Error:', data.error);
