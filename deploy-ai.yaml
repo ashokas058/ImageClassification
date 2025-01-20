@@ -25,8 +25,8 @@ spec:
           resources:
             limits:
               nvidia.com/gpu: 1  # Request one GPU per pod
-              memory: "4Gi"
-              cpu: "2"
+              memory: "10Gi"
+              cpu: "4"
             requests:
               memory: "2Gi"
               cpu: "1"
