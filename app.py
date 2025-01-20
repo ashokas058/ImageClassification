@@ -18,7 +18,7 @@ model = load_model(MODEL_PATH)
 def preprocess_image(frame):
     """Preprocess a video frame for the model."""
     # Resize the frame to the required input size (e.g., 224x224)
-    resized_frame = cv2.resize(frame, (224, 224))
+    resized_frame = cv2.resize(frame, (256, 256))
     # Normalize pixel values to [0, 1]
     img_array = img_to_array(resized_frame) / 255.0
     # Expand dimensions to add batch size
