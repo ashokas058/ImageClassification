@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: feeling-ai
-            image: 980921756385.dkr.ecr.ap-south-1.amazonaws.com/feeling-ai:latest # Replace with your Docker image
+          image: 980921756385.dkr.ecr.ap-south-1.amazonaws.com/feeling-ai:latest # Replace with your Docker image
           ports:
             - containerPort: 5000
           env:
@@ -56,3 +56,4 @@ spec:
       targetPort: 5000  # Container port
   selector:
     app: feeling-ai
+
