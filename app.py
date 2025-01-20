@@ -45,9 +45,10 @@ def predict():
         # Get the frame from the request
         data = request.json
         frame_data = data['frame']
+
         # Decode the base64-encoded frame
         frame_bytes = base64.b64decode(frame_data.split(',')[1])
-        print (str(frame_bytes))
+#         print (str(frame_bytes))
 
         frame_array = np.frombuffer(frame_bytes, np.uint8)
         frame = cv2.imdecode(frame_array, cv2.IMREAD_COLOR)
