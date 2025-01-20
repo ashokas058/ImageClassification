@@ -2,7 +2,7 @@ const video = document.getElementById('video');
 const labelElement = document.getElementById('label');
 
 // Replace with your remote server's URL (e.g., https://your-server.com)
-const serverUrl = 'http://feelingai.devopsfor.cloud';
+const serverUrl = 'https://feelingai.devopsfor.cloud';
 
 // Access the user's camera
 navigator.mediaDevices

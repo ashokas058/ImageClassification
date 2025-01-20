@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: feeling-ai
+  labels:
+    app: feeling-ai
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: feeling-ai
+  template:
+    metadata:
+      labels:
+        app: feeling-ai
+    spec:
+      containers:
+        - name: feeling-ai
+          image: 980921756385.dkr.ecr.ap-south-1.amazonaws.com/feeling-ai:latest # Replace with your Docker image
+          ports:
+            - containerPort: 5000
+          env:
+            - name: FLASK_ENV
+              value: "production"  # Set Flask environment to production
+          resources:
+            limits:
+              nvidia.com/gpu: 1  # Request one GPU per pod
+              memory: "4Gi"
+              cpu: "2"
+            requests:
+              memory: "2Gi"
+              cpu: "1"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: feeling-ai-service
+  labels:
+    app: feeling-ai
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80          # External port
+      targetPort: 5000  # Container port
+  selector:
+    app: feeling-ai
+
